@@ -24,3 +24,9 @@ class Task(db.Model):
 
     def __repr__(self):
         return "<Task(id='%s', title='%s', ref='%s')>" % (self.id, self.title, self.ref)
+
+    def to_json(self):
+        return {
+            "ref": self.ref,
+            "title": self.title
+        }
