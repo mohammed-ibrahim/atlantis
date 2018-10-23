@@ -1,0 +1,9 @@
+Flask==0.10.1
+Flask-SQLAlchemy==2.0
+SQLAlchemy==0.9.9
+flask-script
+argparse==1.2.1
+gunicorn==19.3.0
+ipython==3.1.0
+wsgiref==0.1.2
+PyMySQL==0.9.2
