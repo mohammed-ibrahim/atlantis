@@ -17,6 +17,9 @@ create table tasks (
 )
 """
 
+def _get_date():
+    return datetime.datetime.now()
+
 class Task(db.Model):
 
     __tablename__ = 'tasks'
@@ -25,7 +28,7 @@ class Task(db.Model):
     detail = db.Column('detail', db.String)
     ref = db.Column('ref', db.String)
     created_at = db.Column('created_at', db.Date)
-    modified_at = db.Column('modified_at', db.Date)
+    modified_at = db.Column('modified_at', db.Date, onupdate=_get_date)
 
     def __repr__(self):
         return "<Task(id='%s', title='%s', ref='%s')>" % (self.id, self.title, self.ref)

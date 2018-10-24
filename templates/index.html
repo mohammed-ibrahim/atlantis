@@ -1,0 +1,63 @@
+<html>
+    <body>
+        <!-- <h1>Hello</h1> -->
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <div class="ui grid">
+            <div class="four wide column">
+            </div>
+
+            <div class="ten wide column">
+                {% if page_data|length > 0 %}
+
+
+                    <table class="ui celled table">
+                        <thead>
+                            <tr>
+                                <!-- <th>a</th> -->
+                                <th>b</th>
+                                <!-- <th>b</th> -->
+                                <!-- <th>b</th>
+                                <th>b</th>
+                                <th>b</th>
+                                <th>b</th>
+                                <th>b</th>
+                                <th>b</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for card in page_data %}
+                            <tr>
+                                <!-- <td>{{ card.title }}</td> -->
+                                <!-- <td>{{card.ref}}</td>
+                                <td>{{card.link_1}}</td>
+                                <td>{{card.link_2}}</td>
+                                <td>{{card.link_3}}</td> -->
+                                <td>{{card.detail|safe}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                {% else %}
+
+                    <h1>There are no tasks to display.</h1>
+
+                {% endif %}
+            </div>
+
+            <div class="two wide column">
+            </div>
+        </div>
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
+    </body>
+</html>

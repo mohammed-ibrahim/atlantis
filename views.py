@@ -22,7 +22,7 @@ def new_task():
     #     abort(400)
 
     # log.info(request.text)
-    data = request.get_data()
+    data = request.json
     (status, task, message) = task_factory.build_task(data)
 
     if status:
