@@ -12,37 +12,41 @@
             </div>
 
             <div class="ten wide column">
+
                 {% if page_data|length > 0 %}
 
 
-                    <table class="ui celled table">
-                        <thead>
-                            <tr>
-                                <!-- <th>a</th> -->
-                                <th>b</th>
-                                <!-- <th>b</th> -->
-                                <!-- <th>b</th>
-                                <th>b</th>
-                                <th>b</th>
-                                <th>b</th>
-                                <th>b</th>
-                                <th>b</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
+                <div class="ui items">
 
-                            {% for card in page_data %}
-                            <tr>
-                                <!-- <td>{{ card.title }}</td> -->
-                                <!-- <td>{{card.ref}}</td>
-                                <td>{{card.link_1}}</td>
-                                <td>{{card.link_2}}</td>
-                                <td>{{card.link_3}}</td> -->
-                                <td>{{card.detail|safe}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                    {% for card in page_data %}
+
+                        <div class="item">
+                          <div class="middle aligned content">
+                            <div class="header">
+                              {{card.title|safe}}
+                            </div>
+                            <div class="metadata">
+                              {{card.meta|safe}}
+                            </div>
+                            <div class="description">
+                              {{card.content|safe}}
+                            </div>
+                            <div class="extra">
+                              <div class="ui right floated button">
+                                Action
+                              </div>
+                              <div class="ui right floated button">
+                                Action
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr/>
+                        <br/>
+
+                    {% endfor %}
+                </div>
+
 
                 {% else %}
 
@@ -59,5 +63,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
+        <script>
+            function openInNewTab(url) {
+                var win = window.open(url, '_blank');
+                win.focus();
+            }
+        </script>
     </body>
 </html>

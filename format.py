@@ -1,13 +1,16 @@
 import re
 
-# compiled = re.compile(
-#     r'^(?:http|ftp)s?://' # http:// or https://
-#     r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' # domain...
-#     r'localhost|' # localhost...
-#     r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|' # ...or ipv4
-#     r'\[?[A-F0-9]*:[A-F0-9:]+\]?)' # ...or ipv6
-#     r'(?::\d+)?' # optional port
-#     r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+def parse(detail):
+    lines = detail.split("\n")
+    data = {}
+    # rest_lines =
+    rest_lines = "<br/>".join([format_line(x) for x in lines[1:]])
+
+    data['title'] = format_line(lines[0])
+    data['content'] = rest_lines
+    data['meta'] = 'meta'
+
+    return data
 
 def html_format(content):
     # text = content.replace("\n", "<br/>")
@@ -20,8 +23,8 @@ def html_format(content):
     if len(new_lines) > 0:
         new_lines[0] = "<h3>" + new_lines[0] + "</h3>"
 
-    if len(new_lines) > 1:
-        new_lines[0] += "<br/>"
+    # if len(new_lines) > 1:
+    #     new_lines[0] += "<br/>"
 
     result = "<br/>".join(new_lines)
     print(result)
@@ -43,6 +46,7 @@ def format_part(part):
     #     return "<a href={0}>{0}</a>".format(part)
 
     if part.startswith("http://") or part.startswith("https://"):
-        return "<a href=" + part + ">" + part + "</a>"
+        return "<a onclick=openInNewTab('%s')>%s</a>" % (part, part)
+        # "<a onclick=openInNewTab()/>" + part + ">" + part + "</a>"
 
     return part

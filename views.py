@@ -3,6 +3,7 @@ from model import Task, db
 from app import app
 import task_factory
 import json
+import sqlalchemy
 
 import logging
 log = logging.getLogger(__name__)
@@ -18,8 +19,8 @@ log = logging.getLogger(__name__)
 @app.route('/api/new', methods=['POST'])
 def new_task():
 
-    # if not request.json:
-    #     abort(400)
+    if not request.json:
+        abort(400)
 
     # log.info(request.text)
     data = request.json
@@ -46,10 +47,14 @@ def new_task():
 #        \/             \/
 @app.route('/')
 def home_page():
-    tasks = Task.query.all()
+    tasks = Task.query.filter(Task.status == 'ACTIVE').order_by(sqlalchemy.asc(Task.modified_at)).all()
 
     content = []
     for task in tasks:
         content.append(task_factory.to_dict(task))
 
     return render_template('index.html', page_data = content)
+
+@app.route('/new')
+def new_task_html():
+    return render_template('new-task.html')
