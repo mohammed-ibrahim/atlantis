@@ -7,16 +7,6 @@ import json
 import logging
 log = logging.getLogger(__name__)
 
-@app.route('/')
-def list_all():
-    tasks = Task.query.all()
-
-    content = []
-    for task in tasks:
-        content.append(task_factory.to_dict(task))
-
-    return json.dumps(content)
-
 
 #    _____         .__
 #   /  _  \ ______ |__|
@@ -28,10 +18,11 @@ def list_all():
 @app.route('/api/new', methods=['POST'])
 def new_task():
 
-    if not request.json:
-        abort(400)
+    # if not request.json:
+    #     abort(400)
 
-    data = request.json
+    # log.info(request.text)
+    data = request.get_data()
     (status, task, message) = task_factory.build_task(data)
 
     if status:
@@ -42,8 +33,8 @@ def new_task():
             return task.ref
         except Exception, e:
             log.error("Failed %s", str(e))
-    else:
-        return "Failed", 500
+
+    return "Failed", 500
 
 
 
@@ -53,3 +44,12 @@ def new_task():
 # \    Y    /|  | |  Y Y  \  |__
 #  \___|_  / |__| |__|_|  /____/
 #        \/             \/
+@app.route('/')
+def home_page():
+    tasks = Task.query.all()
+
+    content = []
+    for task in tasks:
+        content.append(task_factory.to_dict(task))
+
+    return render_template('index.html', page_data = content)

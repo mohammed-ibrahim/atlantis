@@ -24,6 +24,6 @@ def setup_defaults():
     root_logger.addHandler(console_handler)
 
 if __name__ == '__main__':
-    # app.run(port = 7272, debug = True)
     setup_defaults()
-    app.run(port = 7272)
+    app.run(port = 7272, debug = True)
+    # app.run(port = 7272)
