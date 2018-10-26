@@ -1,73 +1,291 @@
 <html>
-    <body>
-        <!-- <h1>Hello</h1> -->
+<body>
+    <!-- <h1>Hello</h1> -->
 
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
 
-        <div class="ui grid">
-            <div class="four wide column">
+    <div class="content-placeholder"></div>
+
+    <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            Profile Picture
+        </div>
+        <div class="image content">
+            <div class="ui medium image">
+                <!-- <img src="/images/avatar/large/chris.jpg"> -->
             </div>
-
-            <div class="ten wide column">
-
-                {% if page_data|length > 0 %}
-
-
-                <div class="ui items">
-
-                    {% for card in page_data %}
-
-                        <div class="item">
-                          <div class="middle aligned content">
-                            <div class="header">
-                              {{card.title|safe}}
-                            </div>
-                            <div class="metadata">
-                              {{card.meta|safe}}
-                            </div>
-                            <div class="description">
-                              {{card.content|safe}}
-                            </div>
-                            <div class="extra">
-                              <div class="ui right floated button">
-                                Action
-                              </div>
-                              <div class="ui right floated button">
-                                Action
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <hr/>
-                        <br/>
-
-                    {% endfor %}
-                </div>
-
-
-                {% else %}
-
-                    <h1>There are no tasks to display.</h1>
-
-                {% endif %}
-            </div>
-
-            <div class="two wide column">
+            <div class="description">
+                <div class="ui header">We've auto-chosen a profile image for you.</div>
+                <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
+                <p>Is it okay to use this photo?</p>
             </div>
         </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                Nope
+            </div>
+            <div class="ui positive right labeled icon button">
+                Yep, that's me
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui grid">
+        <div class="four wide column">
+        </div>
+
+        <div class="ten wide column">
+            <table id="primary-tasks-table" class="ui celled table">
+                <thead>
+                    <tr>
+                        <th>b</th>
+                        <th>b</th>
+                        <th>b</th>
+                        <th>b</th>
+                        <th>b</th>
+                        <th>b</th>
+                    </tr>
+                </thead>
+                <tbody id="primary-tasks-table-body">
+
+                    <tr>
+                        <td>c<br/>hello<br/><a>http://www.good-work.com</a></td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>c</td>
+                    </tr>
+                </tbody>
+            </table>
 
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
-        <script>
-            function openInNewTab(url) {
-                var win = window.open(url, '_blank');
-                win.focus();
-            }
-        </script>
-    </body>
+
+
+
+
+            <!-- {% if page_data|length > 0 %}
+
+
+            <div class="ui items">
+
+            {% for card in page_data %}
+
+            <div class="item">
+            <div class="middle aligned content">
+            <div class="header">
+            {{card.title|safe}}
+        </div>
+        <div class="metadata">
+        {{card.meta|safe}}
+    </div>
+    <div class="description">
+    {{card.content|safe}}
+</div>
+<div class="extra">
+<div class="ui green right floated button">
+Resolve
+</div>
+<div onclick="showModal()" class="ui blue right floated button">
+Edit
+</div>
+</div>
+</div>
+</div>
+<hr/>
+<br/>
+
+{% endfor %}
+</div>
+
+
+{% else %}
+
+<h1>There are no tasks to display.</h1>
+
+{% endif %} -->
+</div>
+
+<div class="two wide column">
+</div>
+</div>
+
+<script id="table-data-template" type="text/x-handlebars-template">
+        {{#tasks}}
+        <tr>
+            <td>{{detail}}</td>
+            <td>c</td>
+            <td>c</td>
+            <td>c</td>
+            <td>c</td>
+            <td>c</td>
+        </tr>
+        {{/tasks}}
+</script>
+
+<script id="address-template" type="text/x-handlebars-template">
+    <p>You can find me in {{city}}. My address is {{number}} {{street}}.</p>
+</script>
+
+<script id="template" type="text/x-handlebars-template">
+    <p>Use the <strong>{{power}}</strong>, {{name}}!</p>
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+<script type="text/javascript" src="/static/index.js"></script>
+
+
+</body>
 </html>

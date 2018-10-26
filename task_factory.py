@@ -27,6 +27,14 @@ def build_task(params):
 
     return (True, task, None)
 
+def to_raw(row):
+    d = {}
+    for column in row.__table__.columns:
+
+        d[column.name] = str(getattr(row, column.name))
+
+    return d
+
 def to_dict(row):
     d = {}
     # for column in row.__table__.columns:

@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, flash, url_for, abort
+from flask import render_template, request, redirect, flash, url_for, abort, send_from_directory, jsonify
 from model import Task, db
 from app import app
 import task_factory
@@ -38,6 +38,15 @@ def new_task():
     return "Failed", 500
 
 
+@app.route('/api/tasks', methods=['GET'])
+def get_task():
+    tasks = Task.query.filter(Task.status == 'ACTIVE').order_by(sqlalchemy.asc(Task.modified_at)).all()
+    content = []
+    for task in tasks:
+        content.append(task_factory.to_raw(task))
+        # print(json.dumps(task_factory.to_raw(task)))
+
+    return json.dumps(content)
 
 #   ___ ___   __          .__
 #  /   |   \_/  |_  _____ |  |
@@ -47,14 +56,15 @@ def new_task():
 #        \/             \/
 @app.route('/')
 def home_page():
-    tasks = Task.query.filter(Task.status == 'ACTIVE').order_by(sqlalchemy.asc(Task.modified_at)).all()
+    # tasks = Task.query.filter(Task.status == 'ACTIVE').order_by(sqlalchemy.asc(Task.modified_at)).all()
 
-    content = []
-    for task in tasks:
-        content.append(task_factory.to_dict(task))
+    # content = []
+    # for task in tasks:
+    #     content.append(task_factory.to_dict(task))
 
-    return render_template('index.html', page_data = content)
+    # return render_template('index.html', page_data = content)
+    return send_from_directory('templates', 'index.html')
 
-@app.route('/new')
-def new_task_html():
-    return render_template('new-task.html')
+# @app.route('/new')
+# def new_task_html():
+#     return render_template('new-task.html')

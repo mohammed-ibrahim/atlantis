@@ -3,8 +3,27 @@ from flask import Flask, render_template, request, jsonify, send_from_directory
 import logging
 log = logging.getLogger(__name__)
 
+from flask.json import JSONEncoder
+from datetime import date
+
+class CustomJSONEncoder(JSONEncoder):
+
+    def default(self, obj):
+        try:
+            if isinstance(obj, date):
+                return obj.isoformat()
+            iterable = iter(obj)
+        except TypeError:
+            pass
+        else:
+            return list(iterable)
+        return JSONEncoder.default(self, obj)
+
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/todo"
+app.json_encoder = CustomJSONEncoder
+
 
 from views import *
 
