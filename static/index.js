@@ -45,12 +45,17 @@ $(function () {
     // // Add the compiled html to the page
     // $('.content-placeholder').html(theCompiledHtml);
 
+    loadPrimaryPage();
+});
+
+function loadPrimaryPage() {
     $.ajax({
         type: 'GET',
         url: getAllTasksApi(),
         dataType: 'json',
         success: function (data) {
 
+            console.log("Loading primary page");
             var source = $("#table-data-template").html();
             var template = Handlebars.compile(source);
             $('#primary-tasks-table-body').html(template({tasks: data}));
@@ -62,8 +67,11 @@ $(function () {
             alert(errmsg);
         }
     });
-});
+}
 
+$("#primary-blue-button").click(function(){
+    loadPrimaryPage();
+})
 
 function getAllTasksApi() {
     return window.location.protocol + "//" + window.location.host + "/api/tasks";
