@@ -31,7 +31,7 @@ def new_task():
             db.session.add(task)
             db.session.commit()
             log.info("Succesfully added %s", task.ref)
-            return task.ref
+            return json.dumps({'ref_id': task.ref})
         except Exception, e:
             log.error("Failed %s", str(e))
 
@@ -40,13 +40,13 @@ def new_task():
 
 @app.route('/api/tasks', methods=['GET'])
 def get_task():
-    tasks = Task.query.filter(Task.status == 'ACTIVE').order_by(sqlalchemy.asc(Task.modified_at)).all()
+    tasks = Task.query.filter(Task.status == 'ACTIVE').order_by(sqlalchemy.desc(Task.modified_at)).all()
     content = []
     for task in tasks:
         content.append(task_factory.to_raw(task))
         # print(json.dumps(task_factory.to_raw(task)))
 
-    return json.dumps(content)
+    return jsonify({'tasks': content})
 
 #   ___ ___   __          .__
 #  /   |   \_/  |_  _____ |  |

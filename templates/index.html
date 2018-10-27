@@ -7,29 +7,49 @@
     <br/>
     <br/>
 
+
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
     <div class="content-placeholder"></div>
 
     <div class="ui modal">
         <i class="close icon"></i>
         <div class="header">
-            Profile Picture
+            New Task
         </div>
         <div class="image content">
-            <div class="ui medium image">
-                <!-- <img src="/images/avatar/large/chris.jpg"> -->
-            </div>
             <div class="description">
-                <div class="ui header">We've auto-chosen a profile image for you.</div>
-                <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-                <p>Is it okay to use this photo?</p>
+                <div class="ui form">
+                  <div class="field">
+                    <label>Text</label>
+                    <textarea id="in-modal-task-detail-textarea"></textarea>
+                  </div>
+                  <div class="ui calendar" id="example2">
+                    <div class="ui input left icon">
+                      <i class="calendar icon"></i>
+                      <input type="text" placeholder="Date" id="in-modal-due-date">
+                    </div>
+                  </div>
+                  <!-- <div class="field">
+                    <label>Short Text</label>
+                    <textarea rows="2"></textarea>
+                  </div> -->
+                </div>
+                <!-- <div class="ui header">We've auto-chosen a profile image for you.</div> -->
+                <!-- <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p> -->
+                <!-- <p>Is it okay to use this photo?</p> -->
             </div>
         </div>
         <div class="actions">
-            <div class="ui black deny button">
+            <!-- <div class="ui black deny button">
                 Nope
-            </div>
-            <div class="ui positive right labeled icon button">
-                Yep, that's me
+            </div> -->
+            <div class="ui positive right labeled icon button" id="in-modal-new-task-button">
+                Add new task
                 <i class="checkmark icon"></i>
             </div>
         </div>
@@ -264,8 +284,22 @@ Edit
 <script id="table-data-template" type="text/x-handlebars-template">
         {{#tasks}}
         <tr>
-            <td>{{detail}}</td>
-            <td>{{ref}}</td>
+            <td>{{{htmlize detail}}}</td>
+            <td>
+
+                {{#if created_at_cf}}
+                  Created: {{created_at_cf.hr_diff}}
+                {{/if}}
+
+                <br/>
+
+                {{#if due_date_cf}}
+                  Due: {{due_date_cf.hr_diff}}
+                {{else}}
+                  No due date.
+                {{/if}}
+
+            </td>
             <td>c</td>
             <td>c</td>
             <td>c</td>
@@ -282,11 +316,12 @@ Edit
     <p>Use the <strong>{{power}}</strong>, {{name}}!</p>
 </script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"/>
+<link rel="stylesheet" href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css"/>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 <script type="text/javascript" src="/static/index.js"></script>
+
 
 
 </body>
