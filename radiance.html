@@ -1,74 +1,99 @@
-    <!doctype html>
-    <html>
-        <head>
+<!doctype html>
+<html>
+    <head>
 
-            <meta charset="utf-8" />
+        <meta charset="utf-8" />
 
-            <title>
-                Task Track
-            </title>
+        <title>
+            Task Track
+        </title>
 
-            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.min.js"></script>
-            <script type="text/javascript" src="radiance.js"></script>
-            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.min.js"></script>
+        <script type="text/javascript" src="radiance.js"></script>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-        <head>
+    <head>
 
-        <body ng-app="UserManagement" ng-controller="UserManagementController">
-            <br/>
-            <br/>
-            <br/>
+    <body ng-app="UserManagement" ng-controller="UserManagementController">
+        <br/>
+        <br/>
+        <br/>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <!-- div class="form-group">
+                        <label for="usr">Title:</label>
+                        <input type="text" class="form-control" id="usr">
+                        <label for="pwd">Content:</label>
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="pwd">Priority:</label>
+                        <input type="text" class="form-control" id="usr">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Due Date:</label>
+                        <input type="text" class="form-control" id="usr">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Type:</label>
+                        <input type="text" class="form-control" id="usr">
+                    </div --!>
+                </div>
 
-                    <div class="col-sm-8">
+                <div class="col-sm-8">
 
-                        <table class="table table-hover">
-                            <thead>
-                                Table header
-                                <tr>
-                                    <form class="form-inline">
-                                        <div class="form-group mx-sm-3">
-                                            <input type="input" class="form-control" id="inputPassword2" placeholder="Add new task" ng-focus="onFocus(true)" ng-blur="onFocus(false)">
+                    <table class="table table-hover">
+                        <thead>
+                            Table header
+                        </thead>
 
-                                            <div ng-if="createMode">
+                        <tbody>
+                            <tr>
+                                <form class="form-inline">
+                                    <div class="form-group mx-sm-3">
+                                        <div class="form-group">
+                                            <input type="input" class="form-control" id="add-task-title" placeholder="Task title" ng-focus="onFocus(true)" ng-blur="onFocus(false)">
+                                        </div>
+
+                                        <div ng-if="createMode">
+                                            <div class="form-group">
+                                                <textarea class="form-control" rows="5" id="add-task-content"></textarea>
+                                            </div>
+                                            <div class="form-group">
                                                 <input type="input" class="form-control" id="inputPassword2" placeholder="Other Details">
                                             </div>
                                         </div>
-                                    </form>
-                                </tr>
-                            </thead>
+                                    </div>
+                                </form>
+                            </tr>
+                            <tr ng-repeat="task in tasks">
+                                <td ng-click="extendTask(task)">
+                                    {{task.title}}
 
-                            <tbody>
-                                <tr ng-repeat="task in tasks">
-                                    <td ng-click="extendTask(task)">
-                                        {{task.title}}
-
-                                        <div ng-if="selectedTask == task.ref">
-                                            <p>Hello world</p>
-                                            <div class="ui form">
-                                                <label>{{task.content}}</label><br/>
-                                                <label>{{task.created_at}}</label><br/>
-                                                <label>{{task.due_date}}</label><br/>
-                                            </div>
+                                    <div ng-if="selectedTask == task.ref">
+                                        <p>Hello world</p>
+                                        <div>
+                                            <label>{{task.content}}</label><br/>
+                                            <label>{{task.created_at}}</label><br/>
+                                            <label>{{task.due_date}}</label><br/>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
 
-                        </table>
-                    </div>
+                    </table>
+                </div>
 
-                    <div class="col-sm-2">
-                    </div>
+                <div class="col-sm-2">
                 </div>
             </div>
+        </div>
 
-        </body>
+    </body>
 
-    </html>
+</html>

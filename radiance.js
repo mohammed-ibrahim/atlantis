@@ -17,12 +17,16 @@ app.controller("UserManagementController", function($scope, $http) {
 
     $scope.extendTask = function (task) {
         $scope.selectedTask = task.ref;
+        $scope.createMode = false;
         console.log(`selected task is $task.ref`);
         // _loadExtendedPanel(task.ref);
     }
 
     $scope.onFocus = function (value) {
-        $scope.createMode = value;
+        if (value) {
+            $scope.createMode = value;
+            $scope.selectedTask = null;
+        }
     }
 
     $scope.htmlize = function(content) {
@@ -104,7 +108,8 @@ function addSamples() {
             "title": "Default title",
             "content": "Default content \n Hello content",
             "created_at": "2018-11-04",
-            "due_date": "2018-11-15"
+            "due_date": "2018-11-15",
+            "status": "active"
         }
 
         var storageKey = "titem." + ref;
