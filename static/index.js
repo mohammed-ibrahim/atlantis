@@ -11,24 +11,28 @@ function extendDetails(ref) {
     if (lastHolderId && lastHolderId == currentHolderId) {
         return;
     }
+    extendDetailsSuccess(ref);
 
-    $.ajax({
-        type: 'GET',
-        url: getTaskApi(ref),
-        dataType: 'json',
-        success: function (data) {
-            console.log(data);
-            extendDetailsSuccess(data, ref);
-        },
-        error: function (data) {
-            var errmsg = "There was an error calling api: " + getAllTasksApi();
-            console.log(errmsg);
-            alert(errmsg);
-        }
-    });
+    // $.ajax({
+    //     type: 'GET',
+    //     url: getTaskApi(ref),
+    //     dataType: 'json',
+    //     success: function (data) {
+    //         console.log(data);
+    //         extendDetailsSuccess(data, ref);
+    //     },
+    //     error: function (data) {
+    //         var errmsg = "There was an error calling api: " + getAllTasksApi();
+    //         console.log(errmsg);
+    //         alert(errmsg);
+    //     }
+    // });
 }
 
-function extendDetailsSuccess(data, ref) {
+function extendDetailsSuccess(ref) {
+    var data = localStorage.getItem(ref);
+    data = JSON.parse(data);
+
     var currentHolderId = "#hidden-content-" + ref;
 
     if (lastHolderId) {
@@ -45,7 +49,10 @@ function extendDetailsSuccess(data, ref) {
 Handlebars.registerHelper('htmlize', function(object) {
   var text = Handlebars.escapeExpression(object);
 
-  return new Handlebars.SafeString(text.replace(new RegExp("\n", "g"), "<br/>"));
+  var secure = text.replace(/(https:\/\/[^\s]+)/g, "<a onclick=\"openInNewTab('$1')\">$1</a>")
+  var nonSecure = secure.replace(/(http:\/\/[^\s]+)/g, "<a onclick=\"openInNewTab('$1')\">$1</a>")
+  var broken = nonSecure.replace(new RegExp("\n", "g"), "<br/>");
+  return new Handlebars.SafeString(broken);
 });
 
 
@@ -59,6 +66,16 @@ function loadPrimaryPage() {
         url: getAllTasksApi(),
         dataType: 'json',
         success: function (data) {
+
+            //cache local data
+            // console.log(`total tasks loaded: ${data.tasks.length}`)
+            var i;
+            for (i =0; i < data.tasks.length; i++) {
+                var ref = data.tasks[i].ref;
+                var str = JSON.stringify(data.tasks[i]);
+                // console.log(`adding content for key: ${data.tasks[i].ref} title: ${data.tasks[i].title}`);
+                localStorage.setItem(ref, str);
+            }
 
             console.log("Loading primary page");
             var source = $("#table-data-template").html();
@@ -173,6 +190,7 @@ function getNewTasksApi() {
     return window.location.protocol + "//" + window.location.host + "/api/new";
 }
 
+/*
 window.addEventListener("keydown", keyboardHandler, false);
 
 function keyboardHandler(e) {
@@ -215,3 +233,11 @@ function keyboardHandler(e) {
     // Cancel the default action to avoid it being handled twice
     event.preventDefault();
 }
+
+*/
+
+$('#primary-add-task-datepicker').calendar({
+  type: 'date'
+});
+
+$(".ui.selection.dropdown").dropdown({'set selected': 'Active'});

@@ -11,25 +11,58 @@
             <div class="three wide column">
             </div>
             <div class="ten wide column">
+
+                <form class="ui form">
+                    <div class="field">
+                        <label>New Task</label>
+                        <input type="text" name="first-name" placeholder="Add new task">
+                    </div>
+                    <div class="field">
+                        <label>Details</label>
+                        <textarea type="text" name="last-name" placeholder="Details"></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label>Due Date</label>
+                        <div class="ui calendar" id="primary-add-task-datepicker">
+                            <div class="ui input left icon">
+                                <i class="calendar icon"></i>
+                                <input type="text" placeholder="Date">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Section</label>
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="section">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Section</div>
+                            <div class="menu">
+                                <div class="item" data-value="1">Offload</div>
+                                <div class="item" data-value="2">Active</div>
+                                <div class="item" data-value="3">Backlog</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <button class="ui right floated button" type="submit">Create</button>
+                    <button class="ui primary right floated button" type="submit">Submit</button>
+                </form>
+
+                <br/>
+                <br/>
+
                 <table id="primary-tasks-table" class="ui celled table">
                     <thead>
                         <tr>
-                            <th>b</th>
-                            <th>b</th>
-                            <th>b</th>
-                            <th>b</th>
-                            <th>b</th>
-                            <th>b</th>
+                            <th>Task Track</th>
                         </tr>
                     </thead>
                     <tbody id="primary-tasks-table-body">
                         <tr>
                             <td>c<br/>hello<br/><a>http://www.good-work.com</a></td>
-                            <td>c</td>
-                            <td>c</td>
-                            <td>c</td>
-                            <td>c</td>
-                            <td>c</td>
                         </tr>
                     </tbody>
                 </table>
@@ -54,20 +87,14 @@
                     <div id="hidden-content-{{ref}}">
                     </div>
                 </td>
-                <td>c</td>
-                <td>c</td>
-                <td>c</td>
-                <td>c</td>
             </tr>
             {{/tasks}}
         </script>
-
         <script id="hidden-data-template" type="text/x-handlebars-template">
             <p>{{{htmlize detail}}}</p>
             <p>{{created_at}}</p>
             <p>{{created_at}}</p>
         </script>
-
         <script id="address-template" type="text/x-handlebars-template">
             <p>You can find me in {{city}}. My address is {{number}} {{street}}.</p>
         </script>
