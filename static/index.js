@@ -3,8 +3,43 @@ function openInNewTab(url) {
     win.focus();
 }
 
-function showModal() {
-    $('.ui.modal').modal('show');
+var lastHolderId = null;
+
+function extendDetails(ref) {
+
+    var currentHolderId = "#hidden-content-" + ref;
+    if (lastHolderId && lastHolderId == currentHolderId) {
+        return;
+    }
+
+    $.ajax({
+        type: 'GET',
+        url: getTaskApi(ref),
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            extendDetailsSuccess(data, ref);
+        },
+        error: function (data) {
+            var errmsg = "There was an error calling api: " + getAllTasksApi();
+            console.log(errmsg);
+            alert(errmsg);
+        }
+    });
+}
+
+function extendDetailsSuccess(data, ref) {
+    var currentHolderId = "#hidden-content-" + ref;
+
+    if (lastHolderId) {
+        $(lastHolderId).html("");
+    }
+
+    var source = $("#hidden-data-template").html();
+    var template = Handlebars.compile(source);
+
+    lastHolderId = currentHolderId;
+    $(currentHolderId).html(template(data));
 }
 
 Handlebars.registerHelper('htmlize', function(object) {
@@ -13,56 +48,8 @@ Handlebars.registerHelper('htmlize', function(object) {
   return new Handlebars.SafeString(text.replace(new RegExp("\n", "g"), "<br/>"));
 });
 
-// Handlebars.registerHelper('datehelper', function(object) {
-//
-//     if (!object) {
-//         return '';
-//     }
-//
-//   var text = Handlebars.escapeExpression(object);
-//
-//   return new Handlebars.SafeString(text.replace(new RegExp("\n", "g"), "<br/>"));
-// });
-
-// window.onload = function() {
-//   //Grab the inline template
-//   var template = document.getElementById('template').innerHTML;
-//
-//   //Compile the template
-//   var compiled_template = Handlebars.compile(template);
-//
-//   //Render the data into the template
-//   var rendered = compiled_template({name: "Test Name", power: "Test text"});
-//
-//   //Overwrite the contents of #target with the renderer HTML
-//   document.getElementById('content-placeholder').innerHTML = rendered;
-// }
-
 
 $(function () {
-    // // Grab the template script
-    // var theTemplateScript = $("#address-template").html();
-    // // console.log(theTemplateScript);
-    //
-    // // Compile the template
-    // var theTemplate = Handlebars.compile(theTemplateScript);
-    //
-    // // Define our data object
-    // var gcc1 = {
-    //     "city": "London",
-    //     "street": "Baker Street",
-    //     "number": "221B"
-    // };
-    //
-    // // Pass our data to the template
-    // var theCompiledHtml = theTemplate(gcc1);
-    // console.log(theCompiledHtml);
-    //
-    // // Add the compiled html to the page
-    // $('.content-placeholder').html(theCompiledHtml);
-
-
-    // $('.inplace').inplace({ cancelClass:   'inplace__cancel btn btn-danger',fieldClass:    'inplace__field form-control',saveClass:     'inplace__save btn btn-primary' });
     loadPrimaryPage();
 });
 
@@ -172,6 +159,10 @@ function getModalContent(){
     }
 
     return data;
+}
+
+function getTaskApi(ref) {
+    return window.location.protocol + "//" + window.location.host + "/api/task/" + ref;
 }
 
 function getAllTasksApi() {

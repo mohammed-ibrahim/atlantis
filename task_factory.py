@@ -20,12 +20,12 @@ def get_due_date(params):
 
 
 def build_task(params):
-    detail_field = 'detail'
+    detail_field = 'title'
     if detail_field not in params or params[detail_field].strip() == '':
         return (False, None, "Title is invalid")
 
     reference_id = str(uuid.uuid4())
-    task = Task(detail = params[detail_field], ref = reference_id, created_at = datetime.datetime.now(), modified_at = datetime.datetime.now())
+    task = Task(title = params[detail_field], ref = reference_id, created_at = datetime.datetime.now(), modified_at = datetime.datetime.now())
 
     due_date = get_due_date(params)
     if due_date:

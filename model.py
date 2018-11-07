@@ -8,6 +8,7 @@ db = SQLAlchemy(app)
 """
 create table tasks (
     id int(11) NOT NULL AUTO_INCREMENT,
+    title TEXT default null,
     detail TEXT default null,
     ref varchar(100) default null,
     position int(11) default null,
@@ -27,6 +28,7 @@ class Task(db.Model):
     __tablename__ = 'tasks'
 
     id = db.Column('id', db.Integer, primary_key=True)
+    title = db.Column('title', db.String)
     detail = db.Column('detail', db.String)
     ref = db.Column('ref', db.String)
     created_at = db.Column('created_at', db.Date)

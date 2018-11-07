@@ -48,6 +48,11 @@ def get_task():
 
     return jsonify({'tasks': content})
 
+@app.route('/api/task/<task_ref>', methods=['GET'])
+def get_task_by_ref(task_ref):
+    task = Task.query.filter(Task.ref == task_ref).first()
+    return jsonify(task_factory.to_raw(task))
+
 #   ___ ___   __          .__
 #  /   |   \_/  |_  _____ |  |
 # /    ~    \   __\/     \|  |
@@ -55,7 +60,7 @@ def get_task():
 #  \___|_  / |__| |__|_|  /____/
 #        \/             \/
 @app.route('/')
-def home_page():
+def fresh_home_page():
     # tasks = Task.query.filter(Task.status == 'ACTIVE').order_by(sqlalchemy.asc(Task.modified_at)).all()
 
     # content = []
@@ -64,6 +69,17 @@ def home_page():
 
     # return render_template('index.html', page_data = content)
     return send_from_directory('templates', 'index.html')
+
+@app.route('/angular')
+def new_home_angular():
+    # tasks = Task.query.filter(Task.status == 'ACTIVE').order_by(sqlalchemy.asc(Task.modified_at)).all()
+
+    # content = []
+    # for task in tasks:
+    #     content.append(task_factory.to_dict(task))
+
+    # return render_template('index.html', page_data = content)
+    return send_from_directory('templates', 'new-home.html')
 
 # @app.route('/new')
 # def new_task_html():

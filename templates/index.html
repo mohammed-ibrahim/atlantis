@@ -1,328 +1,83 @@
 <html>
-<body>
-    <!-- <h1>Hello</h1> -->
-
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-
-
-
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-
-    <div class="content-placeholder"></div>
-
-    <div class="ui modal">
-        <i class="close icon"></i>
-        <div class="header">
-            New Task
+    <body>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="content-placeholder"></div>
+        <div class="ui grid">
+            <div class="three wide column">
+            </div>
+            <div class="ten wide column">
+                <table id="primary-tasks-table" class="ui celled table">
+                    <thead>
+                        <tr>
+                            <th>b</th>
+                            <th>b</th>
+                            <th>b</th>
+                            <th>b</th>
+                            <th>b</th>
+                            <th>b</th>
+                        </tr>
+                    </thead>
+                    <tbody id="primary-tasks-table-body">
+                        <tr>
+                            <td>c<br/>hello<br/><a>http://www.good-work.com</a></td>
+                            <td>c</td>
+                            <td>c</td>
+                            <td>c</td>
+                            <td>c</td>
+                            <td>c</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button id="primary-blue-button" class="ui primary button">
+                Save
+                </button>
+            </div>
+            <div class="three wide column">
+            </div>
         </div>
-        <div class="image content">
-            <div class="description">
-                <div class="ui form">
-                  <div class="field">
-                    <label>Text</label>
-                    <textarea id="in-modal-task-detail-textarea"></textarea>
-                  </div>
-                  <div class="ui calendar" id="example2">
-                    <div class="ui input left icon">
-                      <i class="calendar icon"></i>
-                      <input type="text" placeholder="Date" id="in-modal-due-date">
+        <script id="table-data-template" type="text/x-handlebars-template">
+            {{#tasks}}
+            <tr onclick="extendDetails('{{ref}}')">
+                <td>{{title}}
+
+                    {{#if due_date}}
+                    Due: {{due_date}}
+                    {{else}}
+                    No due date.
+                    {{/if}}
+
+                    <div id="hidden-content-{{ref}}">
                     </div>
-                  </div>
-                  <!-- <div class="field">
-                    <label>Short Text</label>
-                    <textarea rows="2"></textarea>
-                  </div> -->
-                </div>
-                <!-- <div class="ui header">We've auto-chosen a profile image for you.</div> -->
-                <!-- <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p> -->
-                <!-- <p>Is it okay to use this photo?</p> -->
-            </div>
-        </div>
-        <div class="actions">
-            <!-- <div class="ui black deny button">
-                Nope
-            </div> -->
-            <div class="ui positive right labeled icon button" id="in-modal-new-task-button">
-                Add new task
-                <i class="checkmark icon"></i>
-            </div>
-        </div>
-    </div>
+                </td>
+                <td>c</td>
+                <td>c</td>
+                <td>c</td>
+                <td>c</td>
+            </tr>
+            {{/tasks}}
+        </script>
 
-    <div class="ui grid">
-        <div class="four wide column">
-        </div>
+        <script id="hidden-data-template" type="text/x-handlebars-template">
+            <p>{{{htmlize detail}}}</p>
+            <p>{{created_at}}</p>
+            <p>{{created_at}}</p>
+        </script>
 
-        <div class="ten wide column">
-            <table id="primary-tasks-table" class="ui celled table">
-                <thead>
-                    <tr>
-                        <th>b</th>
-                        <th>b</th>
-                        <th>b</th>
-                        <th>b</th>
-                        <th>b</th>
-                        <th>b</th>
-                    </tr>
-                </thead>
-                <tbody id="primary-tasks-table-body">
-
-                    <tr>
-                        <td>c<br/>hello<br/><a>http://www.good-work.com</a></td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                        <td>c</td>
-                    </tr>
-                </tbody>
-            </table>
-
-
-
-            <button id="primary-blue-button" class="ui primary button">
-              Save
-            </button>
-
-
-            <!-- {% if page_data|length > 0 %}
-
-
-            <div class="ui items">
-
-            {% for card in page_data %}
-
-            <div class="item">
-            <div class="middle aligned content">
-            <div class="header">
-            {{card.title|safe}}
-        </div>
-        <div class="metadata">
-        {{card.meta|safe}}
-    </div>
-    <div class="description">
-    {{card.content|safe}}
-</div>
-<div class="extra">
-<div class="ui green right floated button">
-Resolve
-</div>
-<div onclick="showModal()" class="ui blue right floated button">
-Edit
-</div>
-</div>
-</div>
-</div>
-<hr/>
-<br/>
-
-{% endfor %}
-</div>
-
-
-{% else %}
-
-<h1>There are no tasks to display.</h1>
-
-{% endif %} -->
-</div>
-
-<div class="two wide column">
-</div>
-</div>
-
-<script id="table-data-template" type="text/x-handlebars-template">
-        {{#tasks}}
-        <tr>
-            <td>{{{htmlize detail}}}</td>
-            <td>
-
-                {{#if created_at_cf}}
-                  Created: {{created_at_cf.hr_diff}}
-                {{/if}}
-
-                <br/>
-
-                {{#if due_date_cf}}
-                  Due: {{due_date_cf.hr_diff}}
-                {{else}}
-                  No due date.
-                {{/if}}
-
-            </td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-        </tr>
-        {{/tasks}}
-</script>
-
-<script id="address-template" type="text/x-handlebars-template">
-    <p>You can find me in {{city}}. My address is {{number}} {{street}}.</p>
-</script>
-
-<script id="template" type="text/x-handlebars-template">
-    <p>Use the <strong>{{power}}</strong>, {{name}}!</p>
-</script>
-
-<link rel="stylesheet" href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css"/>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
-<script type="text/javascript" src="/static/index.js"></script>
-
-
-
-</body>
+        <script id="address-template" type="text/x-handlebars-template">
+            <p>You can find me in {{city}}. My address is {{number}} {{street}}.</p>
+        </script>
+        <script id="template" type="text/x-handlebars-template">
+            <p>Use the <strong>{{power}}</strong>, {{name}}!</p>
+        </script>
+        <link rel="stylesheet" href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css"/>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+        <script type="text/javascript" src="/static/index.js"></script>
+    </body>
 </html>
